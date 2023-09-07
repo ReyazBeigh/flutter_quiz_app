@@ -8,7 +8,7 @@ class ResultsScreen extends StatelessWidget {
   const ResultsScreen(this.switchScreen,
       {super.key, required this.choosenAnswers});
   final List<String> choosenAnswers;
-  List<Map<String, Object>> getSummaryData() {
+  List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
     for (var i = 0; i < choosenAnswers.length; i++) {
       summary.add({
@@ -23,8 +23,7 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final summarData = getSummaryData();
-    final correctAnswer = summarData.where((summary) {
+    final correctAnswer = summaryData.where((summary) {
       return summary['user_answer'] == summary['correct_answer'];
     }).length;
     return SizedBox(
@@ -48,7 +47,7 @@ class ResultsScreen extends StatelessWidget {
               height: 20,
             ),
             QuestionsSummary(
-              summaryData: getSummaryData(),
+              summaryData: summaryData,
             ),
             TextButton.icon(
               onPressed: () {
